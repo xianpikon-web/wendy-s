@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wendy's Garden | Nature's Peace</title>
+
+<style>
+
+/* ==============================
+   VARIABLES
+============================== */
+:root {
+    --primary-dark: #1b3022;
+    --accent-lime: #a8e063;
+    --soft-white: #f4f7f4;
+}
+
+/* ==============================
+   RESET
+============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ==============================
+   BODY
+============================== */
+body {
+    font-family: "Merriweather", Georgia, serif;
+    background: var(--soft-white);
+    overflow-x: hidden;
+}
+
+/* ==============================
+   HERO SECTION
+============================== */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* IMAGE BACKGROUND (ANIMATED) */
+.hero-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('image/LILIES.jpg') center/cover no-repeat;
+    animation: zoomBg 18s ease-in-out infinite alternate;
+}
+
+/* ZOOM EFFECT */
+@keyframes zoomBg {
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+    100% {
+        transform: scale(1.15) translate(-20px, -20px);
+    }
+}
+
+/* DARK OVERLAY */
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.7)
+    );
+}
+
+/* CONTENT */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    max-width: 700px;
+    padding: 20px;
+}
+
+/* TITLE */
+.hero-content h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1s ease forwards;
+}
+
+/* TEXT */
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--accent-lime);
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    padding: 14px 40px;
+    background: #355e3b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.btn:hover {
+    background: transparent;
+    border: 1px solid var(--accent-lime);
+    color: var(--accent-lime);
+}
+
+/* FADE UP ANIMATION */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* FLOATING LIGHT EFFECT */
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(168,224,99,0.12) 0%, transparent 70%);
+    animation: floatLight 12s linear infinite;
+}
+
+@keyframes floatLight {
+    0% { transform: translate(-30%, -30%); }
+    100% { transform: translate(30%, 30%); }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+
+    <!-- BACKGROUND IMAGE -->
+    <div class="hero-bg"></div>
+
+    <!-- OVERLAY -->
+    <div class="overlay"></div>
+
+    <!-- CONTENT -->
+    <div class="hero-content">
+        <h1>Welcome to Wendy's Garden 🌿</h1>
+        <p>Vibrant blooms and living plants to bring peace, beauty, and life into your space.</p>
+        <a href="home.html" class="btn">Visit Now</a>
+    </div>
+
+</header>
+
+</body>
+</html>

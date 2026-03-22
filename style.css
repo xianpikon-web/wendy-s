@@ -1,0 +1,153 @@
+/* ==========================================================================
+   1. VARIABLES & RESET
+   ========================================================================== */
+:root {
+    --primary-dark: #1b3022;    
+    --primary-leaf: #2d5a27;    
+    --forest-solid: #111f16;    
+    --accent-lime: #a8e063;     
+    --soft-white: #f4f7f4;
+
+    --transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    background-color: var(--soft-white);
+  font-family: "Merriweather-Regular", Georgia, "Times New Roman", serif;
+    color: var(--primary-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+
+    animation: fadeInPage 1s ease-in-out;
+}
+
+/* ==========================================================================
+   2. NAVIGATION BAR (FINAL CLEAN VERSION)
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+
+    z-index: 1000;
+
+    /* FIXED CONSISTENT SPACING */
+    padding: 0 6%;
+
+    /* TRANSPARENT DEFAULT */
+    background: transparent;
+
+    transition: var(--transition);
+}
+
+/* Scroll State */
+.navbar.scrolled {
+    background: rgba(17, 31, 22, 0.95);
+    backdrop-filter: blur(10px);
+
+    height: 70px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Logo */
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+/* Nav Container */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    align-items: center;
+}
+
+/* Nav Links */
+.nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+
+    position: relative;
+    padding: 10px 0;
+
+    transition: color 0.3s ease;
+}
+
+/* Hover + Active */
+.nav-links a:hover,
+.nav-links a.active-page {
+    color: var(--accent-lime);
+}
+
+/* Underline Effect */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--accent-lime);
+
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active-page::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   3. PAGE ANIMATION
+   ========================================================================== */
+@keyframes fadeInPage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Disable animation when needed */
+.no-anim,
+.no-anim body {
+    animation: none !important;
+    opacity: 1 !important;
+}
+
+.no-anim .reveal,
+.no-anim .scroll-reveal {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    transition: none !important;
+}
+/* ===== FOOTER ===== */
+.site-footer { background:#2e4d3bdc; color:#fff; padding:60px 10%; }
+.footer-container { display:flex; flex-wrap:wrap; justify-content:space-between; gap:40px; }
+.footer-brand h2 { font-family:'Playfair Display'; font-size:1.8rem; margin-bottom:10px; }
+.footer-brand p { font-size:0.95rem; line-height:1.6; color:#dcdcdc; }
+.footer-contact a, .footer-social a { color:#dcdcdc; text-decoration:none; transition:0.3s; }
+.footer-contact a:hover, .footer-social a:hover { color:#27ae60; }
+.footer-bottom { text-align:center; margin-top:40px; border-top:1px solid rgba(255,255,255,0.2); padding-top:20px; font-size:0.9rem; color:#dcdcdc; }

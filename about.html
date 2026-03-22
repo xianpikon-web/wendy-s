@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wendy's Garden - About</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* ====== VARIABLES & RESET ====== */
+:root {
+    --primary-dark: #1b3022;
+    --accent-lime: #a8e063;
+    --soft-white: #f4f7f4;
+    --transition: all 0.4s ease;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--soft-white);
+    color: var(--primary-dark);
+    scroll-behavior: smooth;
+}
+
+/* ====== NAVBAR ====== */
+.navbar {
+    position: fixed;
+    top:0; left:0; width:100%;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 5%;
+    background: var(--primary-dark);
+    z-index:1001;
+    transition: var(--transition);
+}
+.navbar.scrolled { background-color:#111f1667; padding:15px 5%; box-shadow:0 5px 20px rgba(0,0,0,0.05); }
+
+.navbar .logo { display:flex; align-items:center; gap:10px; }
+.navbar .logo img { height:45px; width:auto; }
+.navbar .logo span { font-family:'Playfair Display', serif; font-size:1.5rem; font-weight:700; color:#fff; }
+
+.nav-links { display:flex; list-style:none; gap:30px; }
+.nav-links a { font-family:'Poppins', sans-serif; color:#fff; text-decoration:none; font-weight:500; letter-spacing:1px; transition:0.3s; }
+.nav-links a:hover, .nav-links a.active-page { color: var(--accent-lime); }
+
+/* BURGER MENU */
+.burger {
+    display:none; flex-direction:column; justify-content:space-between;
+    width:25px; height:20px; cursor:pointer; z-index:1002;
+}
+.burger span { display:block; height:3px; width:100%; background:#fff; border-radius:2px; transition:0.3s; }
+.burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.burger.active span:nth-child(2) { opacity:0; }
+.burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* MOBILE NAV */
+@media(max-width:900px){
+    .burger { display:flex; }
+    .nav-links {
+        position: fixed; top:0; right:0; height:100vh; width:250px;
+        background: var(--primary-dark); flex-direction:column;
+        justify-content:center; align-items:center; gap:40px;
+        transform:translateX(100%); transition: transform 0.3s ease-in-out; z-index:1001;
+    }
+    .nav-links.active { transform:translateX(0); }
+}
+
+/* MENU OVERLAY */
+.menu-overlay {
+    position: fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.5); opacity:0; visibility:hidden;
+    z-index:1000; transition: var(--transition);
+}
+.menu-overlay.active { opacity:1; visibility:visible; }
+
+/* HERO */
+.about-header { position: relative; height:80vh; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; }
+.about-header::before {
+    content:''; position:absolute; top:0; left:0; width:100%; height:100%;
+    background: linear-gradient(rgba(255,255,255,0.25), rgba(0,0,0,0.25)), url('image/LILIES.jpg') center/cover no-repeat;
+    z-index:0; animation: kenBurns 20s infinite alternate;
+}
+.hero-content { position:relative; z-index:2; }
+.hero-content h1.reveal, .hero-content p.reveal {
+    opacity:0; transform:translateY(30px);
+    transition: all 1.2s ease-out;
+}
+.hero-content h1.reveal.active, .hero-content p.reveal.active { opacity:1; transform:translateY(0); }
+
+@keyframes kenBurns { from{transform:scale(1);} to{transform:scale(1.1);} }
+
+/* STORY GRID */
+.container { max-width:1200px; margin:0 auto; padding:100px 5% 60px 5%; }
+.story-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:80px; align-items:center; }
+.story-image img { width:100%; border-radius:20px; }
+.story-text h2.section-title { font-family:'Playfair Display', serif; font-size:1.6rem; margin-bottom:20px; }
+.story-text p { font-family:'Open Sans', sans-serif; font-size:0.95rem; line-height:1.6; margin-bottom:15px; }
+
+/* MISSION & VISION */
+.mission-vision { padding:80px 10%; background:#f8fbf9; text-align:center; }
+.mv-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; }
+.mv-card { background:#fff; padding:30px 25px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.05); transition:0.3s; }
+.mv-card:hover { transform: translateY(-10px) scale(1.02); box-shadow:0 15px 35px rgba(0,0,0,0.1); }
+.mv-card .section-title { font-family:'Playfair Display', serif; font-size:1.6rem; margin-bottom:20px; }
+.mv-card p, .mv-card li { font-family:'Open Sans', sans-serif; font-size:0.95rem; line-height:1.6; color:#555; }
+
+/* FOOTER */
+/* 🌿 FOOTER */
+.site-footer {
+    background: linear-gradient(135deg, #1b3022, #2e4d3b);
+    color: #fff;
+    padding: 60px 5%;
+}
+
+/* GRID LAYOUT */
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+/* BRAND */
+.footer-brand h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+.footer-brand p {
+    color: #dcdcdc;
+    line-height: 1.6;
+}
+
+/* LINKS */
+.footer-links h3,
+.footer-contact h3 {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.footer-links a,
+.footer-contact a {
+    display: block;
+    color: #dcdcdc;
+    text-decoration: none;
+    margin: 6px 0;
+    transition: 0.3s;
+}
+
+/* HOVER EFFECT */
+.footer-links a:hover,
+.footer-contact a:hover {
+    color: #a8e063;
+    transform: translateX(5px);
+}
+
+/* ICON SPACING */
+.footer-contact i {
+    margin-right: 8px;
+}
+
+/* BOTTOM */
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .footer-container {
+        text-align: center;
+    }
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){ .story-grid { grid-template-columns:1fr; } }
+@media(max-width:768px){ .mission-vision { padding:50px 5%; } }
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">
+    <img src="image/W.png" alt="Wendy's Garden Logo">
+    <span>Wendy's Garden 🌿</span>
+  </div>
+
+  <div class="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="about.html" class="active-page">About</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="care.html">Care Tips</a></li>
+  </ul>
+</nav>
+
+<!-- Overlay -->
+<div class="menu-overlay"></div>
+
+<!-- HERO -->
+<header class="about-header">
+    <div class="hero-content">
+        <h1 class="reveal about-title">Our Roots</h1>
+        <p class="reveal about-sub">Growing a greener world, one leaf at a time.</p>
+    </div>
+</header>
+
+<!-- STORY -->
+<section class="container">
+    <div class="story-grid">
+        <div class="story-image">
+            <img src="image/wendy.png" alt="Garden Life">
+        </div>
+        <div class="story-text">
+            <h2 class="section-title">Our Story</h2>
+            <p>Wendy’s Garden began in 1998 with a simple belief: that everyone deserves a piece of nature’s soul. What started as a small personal collection of rare monsteras in a sunlit corner has blossomed into a community for plant parents.</p>
+            <p>We don't just sell plants; we share the patience, care, and quiet joy that comes with watching a new leaf uncurl. Our journey is defined by the dirt on our hands and the green in our hearts.</p>
+
+            <h2 class="section-title">Location</h2>
+            <p>📍 Prk 1 Sitio Lower Lamcanal, Malandag, Malungon, Sarangani Province</p>
+        </div>
+    </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section class="mission-vision">
+    <div class="mv-grid">
+        <div class="mv-card">
+            <h2 class="section-title">Our Mission</h2>
+            <p>Wendy’s Garden is dedicated to achieving its vision through the following:</p>
+            <ul>
+                <li>To cultivate and preserve a wide variety of ornamental plants, flowers, and greenery that showcase the richness of nature;</li>
+                <li>To promote environmental awareness and sustainable gardening practices among community members and visitors;</li>
+            </ul>
+        </div>
+        <div class="mv-card">
+            <h2 class="section-title">Our Vision</h2>
+            <p>Wendy’s Garden aspires to be a leading eco-friendly garden in the locality, recognized for its commitment to environmental sustainability, aesthetic excellence, and community engagement. It envisions becoming a center for learning and inspiration where individuals can develop a deeper appreciation for nature and responsible environmental stewardship.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h2>Wendy's Garden 🌿</h2>
+            <p>Bringing Nature's Soul into Your Home. Curated greenery for every space.</p>
+        </div>
+
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <a href="home.html">🏠 Home</a><br>
+            <a href="about.html">🌿 About</a><br>
+            <a href="shop.html">🛒 Shop</a><br>
+            <a href="care.html">💧 Care Tips</a>
+        </div>
+
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <a href="https://www.facebook.com/analiza.viray.35" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><br>
+            <a href="tel:+639912206240"><i class="fas fa-phone-alt"></i> (+63) 0991 220 6240</a><br>
+            <a href="mailto:wendysgarden@email.com"><i class="fas fa-envelope"></i> Email Us</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Wendy's Garden. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- JS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Hero animation
+    const heroElements = document.querySelectorAll('.hero-content .reveal');
+    setTimeout(() => heroElements.forEach(el => el.classList.add('active')), 500);
+
+    // Scroll navbar
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+        if(window.scrollY > 50) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+    });
+
+    // Burger menu
+    const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.querySelector('.menu-overlay');
+
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', () => {
+        burger.classList.remove('active');
+        navLinks.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            burger.classList.remove('active');
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    });
+
+});
+</script>
+</body>
+</html>

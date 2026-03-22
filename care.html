@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Care Tips | Wendy's Garden</title>
+
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- ICONS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+    --dark:#1b3022;
+    --green:#2d5a27;
+    --lime:#a8e063;
+    --light:#f4f7f4;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:var(--light);}
+
+/* NAVBAR */
+.navbar{
+    position:fixed;
+    width:100%;
+    top:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 5%;
+    background:var(--dark);
+    z-index:1000;
+}
+.navbar.scrolled{background:#111f16cc;}
+
+.logo{display:flex;gap:10px;align-items:center;}
+.logo img{height:40px;}
+.logo span{color:#fff;font-family:'Playfair Display';}
+
+.nav-links{display:flex;gap:30px;list-style:none;}
+.nav-links a{color:#fff;text-decoration:none;}
+.nav-links a:hover{color:var(--lime);}
+
+/* BURGER */
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.burger span{width:25px;height:3px;background:#fff;}
+
+/* MOBILE */
+@media(max-width:900px){
+    .burger{display:flex;}
+    .nav-links{
+        position:fixed;
+        right:-100%;
+        top:0;
+        height:100vh;
+        width:250px;
+        background:var(--dark);
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        transition:.3s;
+    }
+    .nav-links.active{right:0;}
+}
+
+/* OVERLAY */
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+    opacity:0;
+    visibility:hidden;
+}
+.menu-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* HERO */
+.hero{
+    height:80vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#fff;
+    position:relative;
+}
+.hero-bg{
+    position:absolute;
+    inset:0;
+    background:url('image/LILIES.jpg') center/cover no-repeat;
+}
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+}
+.hero-content{position:relative;}
+.hero-content h1{font-size:3rem;font-family:'Playfair Display';}
+.hero-content p{margin-top:10px;}
+
+/* SECTION */
+.section{padding:80px 5%;text-align:center;}
+.section h2{font-family:'Playfair Display';margin-bottom:20px;}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+/* GLASS CARDS */
+.card{
+    background:rgba(255,255,255,0.7);
+    backdrop-filter:blur(10px);
+    padding:25px;
+    border-radius:15px;
+    transition:.4s;
+}
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* VIDEO */
+.video-card video{
+    width:100%;
+    border-radius:10px;
+}
+
+/* BUTTON */
+.btn{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(135deg,var(--green),var(--lime));
+    color:#fff;
+    cursor:pointer;
+}
+
+/* FOOTER */
+/* 🌿 FOOTER */
+.site-footer {
+    background: linear-gradient(135deg, #1b3022, #2e4d3b);
+    color: #fff;
+    padding: 60px 5%;
+}
+
+/* GRID LAYOUT */
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+/* BRAND */
+.footer-brand h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+.footer-brand p {
+    color: #dcdcdc;
+    line-height: 1.6;
+}
+
+/* LINKS */
+.footer-links h3,
+.footer-contact h3 {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.footer-links a,
+.footer-contact a {
+    display: block;
+    color: #dcdcdc;
+    text-decoration: none;
+    margin: 6px 0;
+    transition: 0.3s;
+}
+
+/* HOVER EFFECT */
+.footer-links a:hover,
+.footer-contact a:hover {
+    color: #a8e063;
+    transform: translateX(5px);
+}
+
+/* ICON SPACING */
+.footer-contact i {
+    margin-right: 8px;
+}
+
+/* BOTTOM */
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .footer-container {
+        text-align: center;
+    }
+}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:1s;}
+.reveal.active{opacity:1;transform:translateY(0);}
+
+/* PROGRESS BAR */
+#progress-bar{
+    position:fixed;
+    top:0;
+    height:5px;
+    background:linear-gradient(to right,var(--lime),var(--green));
+    width:0%;
+    z-index:2000;
+}
+
+/* TOP BUTTON */
+#topBtn{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    display:none;
+    background:var(--green);
+    color:#fff;
+    border:none;
+    padding:10px 15px;
+    border-radius:50%;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div id="progress-bar"></div>
+<div class="menu-overlay"></div>
+<button id="topBtn">↑</button>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="overlay"></div>
+
+<nav class="navbar">
+<div class="logo">
+<img src="image/W.png">
+<span>Wendy's Garden 🌿</span>
+</div>
+
+<div class="burger"><span></span><span></span><span></span></div>
+
+<ul class="nav-links">
+<li><a href="home.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="care.html">Care Tips</a></li>
+</ul>
+</nav>
+
+<div class="hero-content">
+<h1 class="reveal">Care & Tips for Thriving Plants 🌿</h1>
+<p class="reveal">
+    Understanding your plants is the first step to helping them grow beautifully.
+    With the right balance of light, water, and care, even the simplest plant can thrive
+    and transform your space into a calm and refreshing environment.
+</p>
+</div>
+</section>
+
+<!-- BASICS -->
+<section class="section">
+<h2 class="reveal">🌱 Understanding Plant Care Basics</h2>
+
+<div class="grid">
+
+<div class="card reveal">
+<h3>☀️ Lighting</h3>
+<p>
+Light plays a crucial role in plant growth, as it directly affects the process of photosynthesis.
+Most indoor plants prefer bright but indirect sunlight, meaning they should be placed near windows
+but not directly exposed to harsh rays that can burn their leaves. On the other hand, outdoor plants
+typically require full sunlight for several hours each day. Observing your plant’s leaves is important—
+if they turn yellow or look dull, it may be a sign that lighting conditions need adjustment.
+</p>
+</div>
+
+<div class="card reveal">
+<h3>💧 Watering</h3>
+<p>
+Watering is one of the most misunderstood aspects of plant care. Overwatering can be more harmful
+than underwatering, as it leads to root rot and fungal growth. A good practice is to check the soil
+before watering—insert your finger about one inch deep, and if it feels dry, it’s time to water.
+Always ensure that your pots have drainage holes so excess water can escape and prevent damage
+to the roots.
+</p>
+</div>
+
+<div class="card reveal">
+<h3>🌿 Soil & Nutrients</h3>
+<p>
+Healthy soil provides the essential nutrients that plants need to grow strong and vibrant.
+Using well-draining soil helps prevent water buildup, while adding organic matter like compost
+improves fertility over time. Different plants have different soil requirements, so understanding
+your plant type is key. Regular feeding with natural fertilizers can also enhance growth and leaf
+quality.
+</p>
+</div>
+
+</div>
+</section>
+
+<!-- HACKS -->
+<section class="section">
+<h2 class="reveal">🌿 Smart Plant Care Hacks</h2>
+
+<div class="grid">
+
+<div class="card reveal">
+<h3>🥚 Eggshell Fertilizer</h3>
+<p>
+Crushed eggshells are a natural source of calcium, which helps strengthen plant cell walls.
+When mixed into the soil, they slowly break down and improve its structure. This method is
+especially helpful for plants that need strong root systems and healthy leaf development.
+</p>
+</div>
+
+<div class="card reveal">
+<h3>🍌 Banana Peel Boost</h3>
+<p>
+Banana peels are rich in potassium, an essential nutrient for plant growth and flowering.
+By soaking them in water and using the liquid as fertilizer, you provide your plants with
+a natural nutrient boost without using chemicals. This simple trick can improve overall plant vitality.
+</p>
+</div>
+
+<div class="card reveal">
+<h3>🧽 Leaf Cleaning</h3>
+<p>
+Dust accumulation on leaves can block sunlight and reduce the plant’s ability to perform photosynthesis.
+Gently wiping the leaves with a damp cloth keeps them clean and allows them to absorb more light efficiently.
+This also improves the plant’s overall appearance and health.
+</p>
+</div>
+
+<div class="card reveal">
+<h3>🔄 Plant Rotation</h3>
+<p>
+Plants naturally grow toward light sources, which can cause uneven growth if left in one position.
+Rotating your plants every few days ensures that all sides receive equal exposure, promoting balanced
+and symmetrical development.
+</p>
+</div>
+
+</div>
+</section>
+
+<!-- VIDEOS -->
+<section class="section">
+<h2 class="reveal">🌿Videos</h2>
+<div class="grid">
+<div class="video-card reveal"><video autoplay muted loop playsinline><source src="videos/B1B.mp4"></video></div>
+<div class="video-card reveal"><video autoplay muted loop playsinline><source src="videos/B4B.mp4"></video></div>
+<div class="video-card reveal"><video autoplay muted loop playsinline><source src="videos/B9B.mp4"></video></div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+<h2 class="reveal">🌿 Start Your Plant Journey</h2>
+<button class="btn" onclick="location.href='shop.html'">Explore Plants</button>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <h2>Wendy's Garden 🌿</h2>
+            <p>
+                Bringing nature closer to your everyday life. We provide carefully curated plants
+                that add beauty, calmness, and freshness to your home and surroundings.
+            </p>
+        </div>
+
+        <!-- LINKS -->
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <a href="home.html">🏠 Home</a>
+            <a href="about.html">🌿 About</a>
+            <a href="shop.html">🛒 Shop</a>
+            <a href="care.html">💧 Care Tips</a>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+
+            <a href="https://www.facebook.com/analiza.viray.35" target="_blank">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+
+            <a href="tel:+639912206240">
+                <i class="fas fa-phone-alt"></i> (+63) 0991 220 6240
+            </a>
+
+            <a href="mailto:wendysgarden@email.com">
+                <i class="fas fa-envelope"></i> wendysgarden@email.com
+            </a>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+        <p>© 2026 Wendy's Garden. All rights reserved.</p>
+    </div>
+</footer>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Wendy's Garden. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+// NAVBAR
+window.addEventListener('scroll',()=>{
+document.querySelector('.navbar').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// BURGER
+const burger=document.querySelector('.burger');
+const nav=document.querySelector('.nav-links');
+const overlay=document.querySelector('.menu-overlay');
+
+burger.onclick=()=>{
+nav.classList.toggle('active');
+overlay.classList.toggle('active');
+};
+overlay.onclick=()=>{
+nav.classList.remove('active');
+overlay.classList.remove('active');
+};
+
+// REVEAL
+const reveals=document.querySelectorAll('.reveal');
+window.addEventListener('scroll',()=>{
+reveals.forEach(el=>{
+if(el.getBoundingClientRect().top<window.innerHeight-100){
+el.classList.add('active');
+}
+});
+});
+
+// PROGRESS BAR
+window.addEventListener('scroll',()=>{
+let s=document.documentElement.scrollTop;
+let h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+document.getElementById("progress-bar").style.width=(s/h*100)+"%";
+});
+
+// TOP BUTTON
+const topBtn=document.getElementById("topBtn");
+window.addEventListener('scroll',()=>{
+topBtn.style.display=window.scrollY>300?"block":"none";
+});
+topBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+</script>
+
+</body>
+</html>
