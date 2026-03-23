@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wendy's Garden - About</title>
+<title>Wendy's Garden</title>
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -102,6 +102,89 @@ body {
 .story-text p { font-family:'Open Sans', sans-serif; font-size:0.95rem; line-height:1.6; margin-bottom:15px; }
 
 /* MISSION & VISION */
+/* --------------------------- */
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* --------------------------- */
+/* STORY SECTION */
+.story-grid {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap; /* For responsive stacking */
+}
+
+.story-image img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 12px;
+}
+
+.story-text {
+    flex: 1;
+    text-align: left;
+}
+
+.story-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.story-text p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+/* --------------------------- */
+/* MISSION & VISION GRID */
+.mv-grid {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap; /* Stack on small screens */
+}
+
+.mv-card {
+    flex: 1;
+    min-width: 300px;
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.mv-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.mv-card p, .mv-card ul {
+    font-size: 1rem;
+    color: #555;
+}
+
+.mv-card ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+}
+
+/* --------------------------- */
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .story-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+    .story-text {
+        text-align: center;
+    }
+}
 .mission-vision { padding:80px 10%; background:#f8fbf9; text-align:center; }
 .mv-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; }
 .mv-card { background:#fff; padding:30px 25px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.05); transition:0.3s; }
@@ -191,7 +274,7 @@ body {
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">
-    <img src="image/W.png" alt="Wendy's Garden Logo">
+    <img src="image/LOGO.png" alt="Wendy's Garden Logo">
     <span>Wendy's Garden 🌿</span>
   </div>
 
@@ -215,45 +298,50 @@ body {
 <!-- HERO -->
 <header class="about-header">
     <div class="hero-content">
-        <h1 class="reveal about-title">Our Roots</h1>
-        <p class="reveal about-sub">Growing a greener world, one leaf at a time.</p>
+        <h1 class="reveal about-title">Curated Greenery</h1>
     </div>
 </header>
 
 <!-- STORY -->
-<section class="container">
-    <div class="story-grid">
-        <div class="story-image">
-            <img src="image/wendy.png" alt="Garden Life">
-        </div>
-        <div class="story-text">
-            <h2 class="section-title">Our Story</h2>
-            <p>Wendy’s Garden began in 1998 with a simple belief: that everyone deserves a piece of nature’s soul. What started as a small personal collection of rare monsteras in a sunlit corner has blossomed into a community for plant parents.</p>
-            <p>We don't just sell plants; we share the patience, care, and quiet joy that comes with watching a new leaf uncurl. Our journey is defined by the dirt on our hands and the green in our hearts.</p>
+<!-- OUR STORY SECTION -->
+<section class="story-section">
+    <div class="container">
+        <div class="story-grid">
+            <div class="story-image">
+                <img src="image/wendy.png" alt="Garden Life">
+            </div>
+            <div class="story-text">
+                <h2 class="section-title">Our Story</h2>
+                <p><STrong>Wendy’s Garden began in 1998 with a simple belief: that everyone deserves a piece of nature’s soul. What started as a small personal collection of rare monsteras in a sunlit corner has blossomed into a community for plant parents.</STrong></p>
+                <p><STrong>We don't just sell plants; we share the patience, care, and quiet joy that comes with watching a new leaf uncurl. Our journey is defined by the dirt on our hands and the green in our hearts.</STrong></p>
 
-            <h2 class="section-title">Location</h2>
-            <p>📍 Prk 1 Sitio Lower Lamcanal, Malandag, Malungon, Sarangani Province</p>
+                <h2 class="section-title">Location</h2>
+                <p><STrong>📍Prk 1 Sitio Lower Lamcanal, Malandag, Malungon, Sarangani Province</STrong></p>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- MISSION & VISION -->
+<!-- MISSION & VISION SECTION -->
 <section class="mission-vision">
-    <div class="mv-grid">
-        <div class="mv-card">
-            <h2 class="section-title">Our Mission</h2>
-            <p>Wendy’s Garden is dedicated to achieving its vision through the following:</p>
-            <ul>
-                <li>To cultivate and preserve a wide variety of ornamental plants, flowers, and greenery that showcase the richness of nature;</li>
-                <li>To promote environmental awareness and sustainable gardening practices among community members and visitors;</li>
-            </ul>
-        </div>
-        <div class="mv-card">
-            <h2 class="section-title">Our Vision</h2>
-            <p>Wendy’s Garden aspires to be a leading eco-friendly garden in the locality, recognized for its commitment to environmental sustainability, aesthetic excellence, and community engagement. It envisions becoming a center for learning and inspiration where individuals can develop a deeper appreciation for nature and responsible environmental stewardship.</p>
+    <div class="container">
+        <div class="mv-grid">
+            <div class="mv-card">
+                <h2 class="section-title">Our Mission</h2>
+                <p><strong>Wendy’s Garden is dedicated to achieving its vision through the following:</strong></p>
+                <ul>
+                    <li><STrong>To cultivate and preserve a wide variety of ornamental plants, flowers, and greenery that showcase the richness of nature;</STrong></li>
+                    <li><STrong>To promote environmental awareness and sustainable gardening practices among community members and visitors;</STrong></li>
+                </ul>
+            </div>
+            <div class="mv-card">
+                <h2 class="section-title">Our Vision</h2>
+                <p><STrong>Wendy’s Garden aspires to be a leading eco-friendly garden in the locality, recognized for its commitment to environmental sustainability, aesthetic excellence, and community engagement. It envisions becoming a center for learning and inspiration where individuals can develop a deeper appreciation for nature and responsible environmental stewardship.</STrong></p>
+            </div>
         </div>
     </div>
 </section>
+ 
 
 <!-- FOOTER -->
 <footer class="site-footer">

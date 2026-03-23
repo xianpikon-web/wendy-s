@@ -72,6 +72,18 @@ body { font-family: 'Poppins', sans-serif; background: var(--soft-white); scroll
     z-index:1000; transition: var(--transition);
 }
 .menu-overlay.active { opacity:1; visibility:visible; }
+.reveal {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    animation: revealLuxury 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes revealLuxury {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
 
 /* ================== HERO ================== */
 .hero { position: relative; height:80vh; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; }
@@ -82,6 +94,64 @@ body { font-family: 'Poppins', sans-serif; background: var(--soft-white); scroll
 .reveal.active { opacity:1; transform:translateY(0); }
 
 /* ================== SECTIONS ================== */
+/* Container */
+.how-it-works .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Section title */
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+/* Grid layout */
+.work-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* Card styling */
+.work-card {
+    background: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    width: 300px; /* same width for all cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Image uniform size */
+.work-card img {
+    width: 100%;
+    height: 200px; /* same height for all images */
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Card heading */
+.work-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Card paragraph */
+.work-card p {
+    font-size: 1rem;
+    color: #555;
+}
 .how-it-works { padding:80px 5%; }
 .section-title { font-family:'Playfair Display', serif; font-size:1.8rem; margin-bottom:40px; text-align:center; }
 .work-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:40px; }
@@ -183,7 +253,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--soft-white); scroll
 
     <nav class="navbar">
         <div class="logo">
-            <img src="image/W.png" alt="Wendy's Garden Logo">
+            <img src="image/LOGO.png" alt="Wendy's Garden Logo">
             <span>Wendy's Garden 🌿</span>
         </div>
 
@@ -208,21 +278,21 @@ body { font-family: 'Poppins', sans-serif; background: var(--soft-white); scroll
 
 <section class="how-it-works">
     <div class="container">
-        <h2 class="section-title scroll-reveal">What we offer?</h2>
+        <h2 class="section-title scroll-reveal">What We Offer</h2>
         <div class="work-grid">
             <div class="work-card scroll-reveal">
+                <img src="image/indor.jpg" alt="Indoor Plants">
                 <h3>Indoor Plants</h3>
-                <img src="image/indor.jpg">
                 <p>Indoor plants are specially suited for homes and offices.</p>
             </div>
             <div class="work-card scroll-reveal">
+                <img src="image/oudorssss.jpg" alt="Outdoor Plants">
                 <h3>Outdoor Plants</h3>
-                <img src="image/oudorssss.jpg">
-                <p>Beautiful flowering plants.</p>
+                <p>Beautiful flowering plants for your garden.</p>
             </div>
             <div class="work-card scroll-reveal">
+                <img src="image/love11.jpg" alt="Garden Care">
                 <h3>Garden Care</h3>
-                <img src="image/love11.jpg">
                 <p>Maintain a healthy and beautiful garden space.</p>
             </div>
         </div>
@@ -231,7 +301,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--soft-white); scroll
 
 <section class="video-section">
     <div class="container">
-        <h2 class="section-title" style="text-align:center;">Videos</h2>
+        <h2 class="section-title" style="text-align:center;">Rooted in patience, blooming in time</h2>
         <div class="video-grid">
             <div class="video-card">
                 <video controls autoplay muted loop playsinline>
@@ -265,7 +335,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--soft-white); scroll
             </button>
         </div>
         <div class="split-image scroll-reveal">
-            <img src="image/W.png" alt="Wendy's Garden Logo">
+            <img src="image/LOGO.png" alt="Wendy's Garden Logo">
         </div>
     </div>
 </section>
@@ -343,5 +413,6 @@ document.querySelectorAll("video").forEach(video => {
     video.volume = 0;
 });
 </script>
+
 </body>
 </html>
